@@ -24,7 +24,7 @@ Este repositório contém a infraestrutura como código (IaC) para provisionar u
 ├── provider.tf                   # Configuração do provider AWS
 ├── variables.tf                  # Variáveis de entrada
 ├── outputs.tf                    # Valores de saída
-├── .gitignore                   # Arquivos ignorados pelo Git
+├── .gitignore                    # Arquivos ignorados pelo Git
 └── README.md                     # Esta documentação
 ```
 
@@ -36,6 +36,10 @@ Este repositório contém a infraestrutura como código (IaC) para provisionar u
 2. Credenciais AWS configuradas no GitHub Secrets:
    - `AWS_ACCESS_KEY_ID`
    - `AWS_SECRET_ACCESS_KEY`
+3. **Importante**: Configure o backend do Terraform antes do primeiro deploy:
+   - Crie um bucket S3 chamado `terraform-state-bolsa-de-valores` para armazenar o state
+   - Crie uma tabela DynamoDB chamada `terraform-state-lock` com chave primária `LockID` (tipo String)
+   - Ou comente a seção `backend "s3"` no arquivo `provider.tf` se preferir usar state local (não recomendado para produção)
 
 ### Configuração das Credenciais AWS no GitHub
 
@@ -81,6 +85,8 @@ terraform apply
 | `aws_region` | Região AWS | `us-east-1` |
 | `environment` | Ambiente (dev, staging, prod) | `prod` |
 | `enable_versioning` | Habilitar versionamento | `true` |
+
+**Nota importante sobre o nome do bucket**: Os nomes de buckets S3 devem ser globalmente únicos em toda a AWS. Se o nome `bolsa-de-valores` já estiver em uso, você precisará alterar o valor padrão no arquivo `variables.tf` ou passar um nome diferente durante o deploy.
 
 ## 📤 Outputs
 
