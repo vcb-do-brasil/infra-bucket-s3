@@ -18,10 +18,6 @@ jobs:
     name: Terraform Plan and Apply
     runs-on: ubuntu-latest
     
-    env:
-      TF_VAR_bucket_name: ${{ vars.TF_VAR_bucket_name }}
-      TF_VAR_aws_region: ${{ vars.TF_VAR_aws_region || 'us-east-1' }}
-    
     defaults:
       run:
         working-directory: .
