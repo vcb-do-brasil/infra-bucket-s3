@@ -48,7 +48,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "main" {
     status = "Enabled"
 
     expiration {
-      days = 5
+      days = 4
     }
   }
 }
