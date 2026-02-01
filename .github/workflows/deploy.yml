@@ -1,16 +1,14 @@
 name: Deploy Infrastructure
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  pull_request_review:
+    types:
+      - submitted
   workflow_dispatch:
 
 jobs:
   terraform:
+    if: ${{ github.event_name != 'pull_request_review' || github.event.review.state == 'approved' }}
     name: Deploy S3 Bucket
     uses: vcb-do-brasil/github-workflows/.github/workflows/terraform-infra-deploy.yml@main
     with:
