@@ -1,9 +1,8 @@
 # Example terraform.tfvars file
 # Copy this to terraform.tfvars and customize with your values
 
-# REQUIRED: S3 bucket name must be globally unique across all AWS accounts
-# Consider using a pattern like: <org>-<project>-<env>-<random>
-bucket_name = "vcb-infra-bucket-s3"
+# Prefixo do bucket S3 — a AWS adiciona um sufixo único automaticamente
+bucket_name = "acoes-bolsa-"
 
 # AWS Region
 aws_region = "us-east-1"
