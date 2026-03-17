@@ -1,5 +1,5 @@
 variable "bucket_name" {
-  description = "Nome do bucket S3 (deve ser globalmente único)"
+  description = "Prefixo do nome do bucket S3 (a AWS adiciona um sufixo único automaticamente)"
   type        = string
 }
 
